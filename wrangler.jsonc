@@ -13,5 +13,9 @@
       "database_name": "hd-abdichtungstechnik",
       "database_id": "0f073664-2056-4aab-9409-ef960fcc60ac"
     }
+  ],
+  "routes": [
+    { "pattern": "hdabdichtungstechnik.de", "custom_domain": true },
+    { "pattern": "www.hdabdichtungstechnik.de", "custom_domain": true }
   ]
 }

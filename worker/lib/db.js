@@ -1,4 +1,4 @@
-const VALID_CATEGORIES = ["Flachdach", "Balkon", "Garage", "Terrasse", "Sockel", "Sonstiges"];
+const VALID_CATEGORIES = ["Flachdach", "Balkon", "Garage", "Terrasse", "Sockel", "Bad/Dusche", "Sonstiges"];
 const VALID_STATUSES = ["neu", "kontaktiert", "angebot", "auftrag", "abgelehnt"];
 
 export function normalizeCategory(value) {
