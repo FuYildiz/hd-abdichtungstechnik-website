@@ -1,0 +1,17 @@
+{
+  "name": "hd-abdichtungstechnik",
+  "compatibility_date": "2026-07-08",
+  "main": "worker/index.js",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "run_worker_first": ["/admin/*", "/api/*"]
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "hd-abdichtungstechnik",
+      "database_id": "0f073664-2056-4aab-9409-ef960fcc60ac"
+    }
+  ]
+}

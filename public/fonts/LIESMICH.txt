@@ -1,0 +1,25 @@
+Inter lokal einbinden — letzte manuelle Schritte
+=================================================
+
+Die Website erwartet in diesem Ordner drei Dateien:
+
+  inter-400.woff2   (Regular)
+  inter-500.woff2   (Medium)
+  inter-600.woff2   (SemiBold)
+
+So kommst du dran (5 Minuten):
+
+1. Öffne https://gwfh.mranftl.com/fonts/inter  (google-webfonts-helper)
+2. Charsets: "latin" reicht (enthält ä ö ü ß).
+3. Styles: 400, 500, 600 auswählen.
+4. Download ZIP, entpacken.
+5. Die drei .woff2-Dateien hierher kopieren und umbenennen:
+   inter-v…-latin-regular.woff2  → inter-400.woff2
+   inter-v…-latin-500.woff2      → inter-500.woff2
+   inter-v…-latin-600.woff2      → inter-600.woff2
+
+Alternative: https://rsms.me/inter/ (offizielle Seite, "Download family").
+
+Solange die Dateien fehlen, nutzt die Seite automatisch die System-Schrift
+(auf dem Mac: San Francisco) — sie sieht also nie kaputt aus, nur minimal anders.
+Die Google-CDN-Verbindung ist bereits entfernt, das DSGVO-Problem damit gelöst.
