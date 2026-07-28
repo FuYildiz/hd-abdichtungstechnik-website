@@ -117,8 +117,9 @@ main,
 }
 
 .wordmark img {
-  height: 26px;
+  height: 30px;
   width: auto;
+  display: block;
 }
 
 .site-nav {
@@ -265,9 +266,12 @@ main,
 }
 
 .hero-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: 1px solid var(--gray-200);
   background: var(--white);
-  padding: 36px 32px 28px;
+  padding: 56px 40px;
   box-shadow: 0 30px 70px -45px rgba(0, 0, 0, 0.3);
   transition: transform 0.15s ease-out, box-shadow 0.3s ease;
   will-change: transform;
@@ -278,42 +282,11 @@ main,
   box-shadow: 0 40px 80px -45px rgba(0, 0, 0, 0.38);
 }
 
-.hero-diagram {
+.hero-logo {
   display: block;
   width: 100%;
+  max-width: 360px;
   height: auto;
-}
-
-.hero-tools {
-  display: flex;
-  align-items: center;
-  gap: 28px;
-  margin-top: 24px;
-  padding-top: 20px;
-  border-top: 1px solid var(--gray-200);
-}
-
-.hero-tools svg {
-  width: 30px;
-  height: 30px;
-  color: var(--gray-400);
-}
-
-.hero-tools span {
-  font-size: 0.72rem;
-  color: var(--gray-400);
-  display: block;
-  margin-top: 4px;
-}
-
-.hero-tool {
-  text-align: center;
-}
-
-.hero-visual-caption {
-  margin-top: 20px;
-  font-size: 0.85rem;
-  color: var(--gray-400);
 }
 
 /* ————— Sektionen ————— */
@@ -723,7 +696,7 @@ main,
 
 @media (prefers-reduced-motion: reduce) {
   .hero-copy > *,
-  .hero-logo-card {
+  .hero-visual {
     animation: none;
   }
 
@@ -820,8 +793,8 @@ main,
     gap: 40px;
   }
 
-  .hero-logo-card {
-    padding: 32px 24px;
+  .hero-visual {
+    padding: 40px 24px;
   }
 
   .section {
