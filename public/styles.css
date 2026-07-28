@@ -579,18 +579,14 @@ main,
 
 .gallery-track {
   display: flex;
-  width: max-content;
-  animation: gallery-scroll 46s linear infinite;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
 }
 
-.gallery-track:hover,
-.gallery-track:focus-within {
-  animation-play-state: paused;
-}
-
-@keyframes gallery-scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+.gallery-track::-webkit-scrollbar {
+  display: none;
 }
 
 .gallery-set {
@@ -1052,11 +1048,7 @@ main,
   }
 
   .gallery-track {
-    animation: none;
-    width: auto;
-    overflow-x: auto;
     scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
   }
 
   .gallery-set[aria-hidden="true"] {

@@ -55,6 +55,52 @@ document.addEventListener("DOMContentLoaded", () => {
     targets.forEach((el) => observer.observe(el));
   }
 
+  // Einblicke-Galerie: läuft von selbst durch, pausiert bei Hover/Touch,
+  // lässt sich währenddessen aber weiterhin manuell verschieben (Wischen,
+  // Trackpad, Shift+Mausrad) — dafür treiben wir scrollLeft selbst per rAF
+  // an, statt den ganzen Track per CSS-Transform zu animieren.
+  const galleryTrack = document.querySelector(".gallery-track");
+  const gallerySet = galleryTrack ? galleryTrack.querySelector(".gallery-set") : null;
+
+  if (galleryTrack && gallerySet && !reduceMotion) {
+    const speedPxPerSec = 36;
+    let paused = false;
+    let lastTime = null;
+
+    const step = (time) => {
+      if (lastTime === null) lastTime = time;
+      const dt = (time - lastTime) / 1000;
+      lastTime = time;
+
+      if (!paused) {
+        galleryTrack.scrollLeft += speedPxPerSec * dt;
+        const setWidth = gallerySet.getBoundingClientRect().width;
+        if (setWidth > 0 && galleryTrack.scrollLeft >= setWidth) {
+          galleryTrack.scrollLeft -= setWidth;
+        }
+      }
+      requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+
+    const pause = () => { paused = true; };
+    let resumeTimer;
+    const resumeSoon = () => {
+      clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(() => {
+        paused = false;
+        lastTime = null;
+      }, 1000);
+    };
+
+    galleryTrack.addEventListener("mouseenter", pause);
+    galleryTrack.addEventListener("mouseleave", () => { paused = false; lastTime = null; });
+    galleryTrack.addEventListener("touchstart", pause, { passive: true });
+    galleryTrack.addEventListener("touchend", resumeSoon, { passive: true });
+    galleryTrack.addEventListener("focusin", pause);
+    galleryTrack.addEventListener("focusout", () => { paused = false; lastTime = null; });
+  }
+
   // Scroll-Fortschritt: feine Linie am oberen Rand
   const progress = document.createElement("div");
   progress.className = "scroll-progress";
