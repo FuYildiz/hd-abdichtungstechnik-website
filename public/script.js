@@ -72,23 +72,15 @@ document.addEventListener("DOMContentLoaded", () => {
   addEventListener("scroll", updateProgress, { passive: true });
   addEventListener("resize", updateProgress);
 
-  // Dezenter 3D-Tilt auf der Hero-Illustration, nur bei Maus-Bedienung, sehr subtil
-  const heroVisual = document.querySelector(".hero-visual");
-  if (heroVisual && !reduceMotion && window.matchMedia("(pointer: fine)").matches) {
-    const maxTilt = 4;
-
-    heroVisual.addEventListener("mousemove", (e) => {
-      const rect = heroVisual.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
-      heroVisual.style.transform =
-        "perspective(900px) rotateY(" + (x * maxTilt).toFixed(2) + "deg)" +
-        " rotateX(" + (-y * maxTilt).toFixed(2) + "deg)";
-    });
-
-    heroVisual.addEventListener("mouseleave", () => {
-      heroVisual.style.transform = "";
-    });
+  // Startseite: Header erst einblenden, sobald gescrollt wird
+  const siteHeader = document.querySelector(".site-header");
+  if (siteHeader && document.body.classList.contains("home")) {
+    const revealThreshold = 40;
+    const toggleHeader = () => {
+      siteHeader.classList.toggle("header-visible", window.scrollY > revealThreshold);
+    };
+    toggleHeader();
+    addEventListener("scroll", toggleHeader, { passive: true });
   }
 
   // Kontaktformular: sendet an /api/contact, zeigt Status ohne Seitenwechsel

@@ -100,6 +100,24 @@ main,
   border-bottom: 1px solid var(--gray-200);
 }
 
+/* Startseite: Header erst einblenden, wenn gescrollt wird —
+   das Logo im Hero soll als Erstes und ohne Ablenkung zu sehen sein. */
+.home .site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+.home .site-header.header-visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
 .header-inner {
   display: flex;
   align-items: center;
@@ -221,7 +239,7 @@ main,
 .hero-logo {
   display: block;
   width: 100%;
-  max-width: 380px;
+  max-width: 460px;
   height: auto;
   margin-bottom: 3rem;
   animation: fade-up 0.7s ease backwards;
@@ -690,8 +708,12 @@ main,
 
 @media (prefers-reduced-motion: reduce) {
   .hero-copy > *,
-  .hero-visual {
+  .hero-logo {
     animation: none;
+  }
+
+  .home .site-header {
+    transition: none;
   }
 
   .reveal {
@@ -783,7 +805,7 @@ main,
   }
 
   .hero-logo {
-    max-width: 280px;
+    max-width: 320px;
     margin-bottom: 2.25rem;
   }
 
