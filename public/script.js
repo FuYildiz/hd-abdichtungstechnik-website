@@ -88,15 +88,19 @@ document.addEventListener("DOMContentLoaded", () => {
   addEventListener("scroll", updateProgress, { passive: true });
   addEventListener("resize", updateProgress);
 
-  // Startseite: Header erst einblenden, sobald gescrollt wird
+  // Startseite: volle Kopfzeile erst einblenden, sobald der Hero
+  // (mit eigener Mini-Nav) durchgescrollt ist — kein Doppel-Nav-Effekt
   const siteHeader = document.querySelector(".site-header");
+  const heroSection = document.querySelector(".hero");
   if (siteHeader && document.body.classList.contains("home")) {
-    const revealThreshold = 40;
+    const revealThreshold = () =>
+      heroSection ? heroSection.offsetHeight - 80 : 40;
     const toggleHeader = () => {
-      siteHeader.classList.toggle("header-visible", window.scrollY > revealThreshold);
+      siteHeader.classList.toggle("header-visible", window.scrollY > revealThreshold());
     };
     toggleHeader();
     addEventListener("scroll", toggleHeader, { passive: true });
+    addEventListener("resize", toggleHeader);
   }
 
   // Kontaktformular: sendet an /api/contact, zeigt Status ohne Seitenwechsel
