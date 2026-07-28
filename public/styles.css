@@ -380,11 +380,36 @@ main,
   margin-bottom: 1.5rem;
 }
 
-.tool-icon {
-  width: 32px;
-  height: 32px;
-  color: var(--gray-400);
-  margin-bottom: 1.5rem;
+.tool-card {
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.tool-photo {
+  aspect-ratio: 4 / 3;
+  background: #1a1a1a;
+}
+
+.tool-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tool-card-body {
+  padding: 26px 28px 30px;
+}
+
+.tool-card-body h3 {
+  margin-bottom: 0.75rem;
+}
+
+.tool-card-body p {
+  font-size: 0.95rem;
+  color: var(--gray-600);
 }
 
 .card h3 {
