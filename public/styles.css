@@ -468,14 +468,24 @@ main,
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: var(--gray-100);
-  font-size: 0.72rem;
-  letter-spacing: 0.02em;
   color: var(--gray-600);
   margin-bottom: 1.5rem;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.25s var(--ease);
+}
+
+.card-index svg {
+  width: 19px;
+  height: 19px;
+}
+
+.card:hover .card-index {
+  background: var(--black);
+  color: var(--white);
+  transform: scale(1.08);
 }
 
 .tool-card {
@@ -750,14 +760,24 @@ main,
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: var(--accent-soft);
-  font-size: 0.72rem;
-  letter-spacing: 0.02em;
   color: var(--accent);
   margin-bottom: 1.5rem;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.25s var(--ease);
+}
+
+.step-index svg {
+  width: 19px;
+  height: 19px;
+}
+
+.steps li:hover .step-index {
+  background: var(--accent);
+  color: var(--white);
+  transform: scale(1.08);
 }
 
 .steps h3 {
