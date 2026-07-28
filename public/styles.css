@@ -361,7 +361,12 @@ main,
 }
 
 #hero-content {
-  padding-top: 90px;
+  padding-top: 120px;
+  padding-bottom: 40px;
+}
+
+#hero-content .container {
+  max-width: 1400px;
 }
 
 .hero-stack {
@@ -377,7 +382,7 @@ main,
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 640px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
@@ -398,14 +403,14 @@ main,
 }
 
 .hero-copy h1 {
-  font-size: clamp(1.5rem, 2.6vw, 2.25rem);
-  max-width: 20ch;
+  font-size: clamp(2rem, 4.4vw, 3.75rem);
+  max-width: 22ch;
 }
 
 .hero-copy .lead {
-  max-width: 480px;
-  margin-top: 1.25rem;
-  font-size: 1rem;
+  max-width: 640px;
+  margin-top: 1.75rem;
+  font-size: 1.15rem;
   color: var(--gray-600);
 }
 
@@ -414,7 +419,7 @@ main,
   flex-wrap: wrap;
   justify-content: center;
   gap: 12px;
-  margin-top: 3rem;
+  margin-top: 3.5rem;
 }
 
 .hero-meta span {
@@ -443,6 +448,39 @@ main,
 
 .section-alt {
   background: var(--gray-100);
+}
+
+/* Fließende Übergänge: Sektionen mit Farbwechsel bekommen eine sanfte
+   Verlaufskante statt eines harten Schnitts. */
+.section-alt,
+.section-contact,
+.section-alt + .section:not(.section-alt) {
+  position: relative;
+}
+
+.section-alt::before,
+.section-contact::before,
+.section-alt + .section:not(.section-alt)::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 140px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.section-alt::before {
+  background: linear-gradient(to bottom, var(--white), var(--gray-100));
+}
+
+.section-alt + .section:not(.section-alt)::before {
+  background: linear-gradient(to bottom, var(--gray-100), var(--white));
+}
+
+.section-contact::before {
+  background: linear-gradient(to bottom, var(--white), var(--black));
 }
 
 .section-intro {

@@ -27,7 +27,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Scroll-Reveal: Inhalte gleiten beim Scrollen sanft ein
   const targets = document.querySelectorAll(
-    ".grid .card, .steps li, .faq details, .split-body, .contact-layout"
+    ".grid .card, .steps li, .faq details, .split-body, .contact-layout, " +
+    ".section:not(.hero-content) > .container > .eyebrow, " +
+    ".section:not(.hero-content) > .container > h2, " +
+    ".section:not(.hero-content) > .container > .section-intro"
   );
 
   if (!reduceMotion && "IntersectionObserver" in window) {
