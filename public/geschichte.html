@@ -17,7 +17,6 @@
     /* ————— Essay-spezifisch, baut auf styles.css auf ————— */
     .essay-hero {
       padding: 90px 0 0;
-      border-bottom: 1px solid var(--gray-200);
     }
     .essay-hero .lead {
       max-width: 62ch;
@@ -35,7 +34,7 @@
       flex-wrap: wrap;
     }
 
-    .hero-figure { margin: 0; }
+    .hero-figure { margin: 24px 0 0; }
     .hero-figure img {
       display: block;
       width: 100%;
@@ -43,7 +42,6 @@
       object-fit: cover;
       object-position: center 40%;
       filter: grayscale(0.5) sepia(0.1) contrast(1.02);
-      border-top: 1px solid var(--gray-200);
     }
     .hero-figure figcaption {
       padding: 14px 0 40px;
@@ -60,8 +58,9 @@
       display: block;
       width: 100%;
       height: auto;
-      border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
       background: var(--gray-100);
+      box-shadow: var(--shadow-sm);
       filter: grayscale(0.45) sepia(0.08) contrast(1.02);
     }
     figure.essay-figure figcaption {
@@ -79,8 +78,7 @@
     }
     .essay-intro p + p { margin-top: 1.25rem; }
 
-    .essay-block { padding: 64px 0; border-top: 1px solid var(--gray-200); scroll-margin-top: 80px; }
-    .essay-block:last-of-type { border-bottom: 1px solid var(--gray-200); }
+    .essay-block { padding: 56px 0; scroll-margin-top: 80px; }
     .essay-block .eyebrow { margin-bottom: 0.75rem; }
     .essay-block h2 {
       font-size: clamp(1.5rem, 3vw, 2rem);
@@ -104,7 +102,10 @@
     .toc {
       max-width: 68ch;
       margin-top: 2.5rem;
+      background: var(--white);
       border: 1px solid var(--gray-200);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
       padding: 8px 28px;
     }
     .toc-label {
@@ -137,11 +138,17 @@
     .toc a:hover { color: var(--gray-600); }
     .toc a:hover::before { color: var(--black); }
 
-    .essay-bridge { background: var(--gray-100); border-top: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200); }
+    .essay-bridge { background: var(--gray-100); }
 
-    .sources { list-style: none; max-width: 68ch; margin-top: 1.5rem; }
-    .sources li { padding: 14px 0; border-top: 1px solid var(--gray-200); font-size: 0.92rem; color: var(--gray-600); }
-    .sources li:last-child { border-bottom: 1px solid var(--gray-200); }
+    .sources { list-style: none; max-width: 68ch; margin-top: 1.5rem; display: flex; flex-direction: column; gap: 8px; }
+    .sources li {
+      padding: 14px 20px;
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-sm);
+      font-size: 0.92rem;
+      color: var(--gray-600);
+    }
     .sources a { color: var(--black); text-decoration: underline; text-underline-offset: 3px; }
 
     #quellen { scroll-margin-top: 80px; }
@@ -155,15 +162,17 @@
 
   <header class="site-header">
     <div class="container header-inner">
-      <a href="index.html" class="wordmark">
-        <img src="images/logo-icon.png" alt="" width="34" height="18">
-        HD Abdichtungstechnik
+      <a href="index.html" class="wordmark" aria-label="HD Abdichtungstechnik – Startseite">
+        <img src="images/logo-icon.png" alt="HD Abdichtungstechnik" width="40" height="21">
       </a>
       <nav class="site-nav">
         <a href="index.html#leistungen">Leistungen</a>
         <a href="index.html#referenzen">Referenzen</a>
         <a href="index.html#werkzeuge">Werkzeuge</a>
+        <a href="index.html#ablauf">Ablauf</a>
+        <a href="index.html#ueber-uns">Über uns</a>
         <a href="geschichte.html">Geschichte</a>
+        <a href="index.html#faq">FAQ</a>
         <a href="index.html#kontakt" class="nav-cta">Kontakt</a>
       </nav>
       <button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="site-nav">
