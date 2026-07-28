@@ -250,11 +250,11 @@ main,
   position: absolute;
   inset: -30px;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.75) 55%, var(--white) 100%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.65) 55%, var(--white) 100%),
     radial-gradient(closest-side, var(--accent-soft), transparent 72%),
     url("images/einblicke/sicherung-flachdach.jpg") center 32% / cover no-repeat;
-  filter: grayscale(1) blur(8px) contrast(0.9);
-  opacity: 0.7;
+  filter: grayscale(1) blur(3px) contrast(1.05);
+  opacity: 0.9;
   pointer-events: none;
   z-index: 0;
 }
@@ -531,46 +531,11 @@ main,
 
 /* ————— Einblicke / Galerie ————— */
 .gallery-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 24px;
   margin-bottom: 2.5rem;
 }
 
 .gallery-head h2 {
   margin-bottom: 0;
-}
-
-.gallery-arrows {
-  display: flex;
-  gap: 10px;
-  flex: none;
-}
-
-.gallery-arrow {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: 1px solid var(--gray-200);
-  background: var(--white);
-  color: var(--black);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background 0.2s ease, transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
-}
-
-.gallery-arrow:hover {
-  background: var(--gray-100);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-sm);
-}
-
-.gallery-arrow svg {
-  width: 18px;
-  height: 18px;
 }
 
 .gallery-section {
@@ -579,38 +544,55 @@ main,
 
 .gallery {
   position: relative;
+  overflow: hidden;
 }
 
+.gallery::before,
 .gallery::after {
   content: "";
   position: absolute;
   top: 0;
-  right: 0;
   bottom: 0;
   width: 80px;
-  background: linear-gradient(to left, var(--white), transparent);
+  z-index: 1;
   pointer-events: none;
+}
+
+.gallery::before {
+  left: 0;
+  background: linear-gradient(to right, var(--white), transparent);
+}
+
+.gallery::after {
+  right: 0;
+  background: linear-gradient(to left, var(--white), transparent);
 }
 
 .gallery-track {
   display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  padding: 4px 24px 12px max(24px, calc((100vw - var(--max-width)) / 2 + 24px));
+  width: max-content;
+  animation: gallery-scroll 46s linear infinite;
 }
 
-.gallery-track::-webkit-scrollbar {
-  display: none;
+.gallery-track:hover,
+.gallery-track:focus-within {
+  animation-play-state: paused;
+}
+
+@keyframes gallery-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.gallery-set {
+  display: flex;
+  gap: 20px;
+  padding-right: 20px;
 }
 
 .gallery-item {
   flex: 0 0 auto;
   width: min(74vw, 400px);
-  scroll-snap-align: start;
   border: 1px solid var(--gray-200);
   border-radius: var(--radius);
   background: var(--gray-100);
@@ -635,12 +617,6 @@ main,
   padding: 14px 18px 18px;
   font-size: 0.88rem;
   color: var(--gray-600);
-}
-
-@media (max-width: 600px) {
-  .gallery-arrows {
-    display: none;
-  }
 }
 
 /* ————— Standort / Karte ————— */
@@ -1064,6 +1040,22 @@ main,
     opacity: 1;
     transform: none;
     transition: none;
+  }
+
+  .gallery-track {
+    animation: none;
+    width: auto;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .gallery-set[aria-hidden="true"] {
+    display: none;
+  }
+
+  .gallery-item {
+    scroll-snap-align: start;
   }
 }
 
