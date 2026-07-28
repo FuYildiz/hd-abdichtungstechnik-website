@@ -55,6 +55,22 @@ document.addEventListener("DOMContentLoaded", () => {
     targets.forEach((el) => observer.observe(el));
   }
 
+  // Einblicke-Galerie: Pfeile scrollen sanft ein Bild weiter
+  const galleryTrack = document.querySelector(".gallery-track");
+  const galleryPrev = document.querySelector(".gallery-prev");
+  const galleryNext = document.querySelector(".gallery-next");
+
+  if (galleryTrack && galleryPrev && galleryNext) {
+    const scrollByItem = (direction) => {
+      const item = galleryTrack.querySelector(".gallery-item");
+      const distance = (item ? item.getBoundingClientRect().width : 320) + 20;
+      galleryTrack.scrollBy({ left: direction * distance, behavior: "smooth" });
+    };
+
+    galleryPrev.addEventListener("click", () => scrollByItem(-1));
+    galleryNext.addEventListener("click", () => scrollByItem(1));
+  }
+
   // Scroll-Fortschritt: feine Linie am oberen Rand
   const progress = document.createElement("div");
   progress.className = "scroll-progress";

@@ -396,6 +396,120 @@ main,
   color: var(--gray-600);
 }
 
+/* ————— Einblicke / Galerie ————— */
+.gallery-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  margin-bottom: 2.5rem;
+}
+
+.gallery-head h2 {
+  margin-bottom: 0;
+}
+
+.gallery-arrows {
+  display: flex;
+  gap: 10px;
+  flex: none;
+}
+
+.gallery-arrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--gray-200);
+  background: var(--white);
+  color: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+
+.gallery-arrow:hover {
+  background: var(--gray-100);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.gallery-arrow svg {
+  width: 18px;
+  height: 18px;
+}
+
+.gallery-section {
+  overflow: hidden;
+}
+
+.gallery {
+  position: relative;
+}
+
+.gallery::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 80px;
+  background: linear-gradient(to left, var(--white), transparent);
+  pointer-events: none;
+}
+
+.gallery-track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 4px 24px 12px max(24px, calc((100vw - var(--max-width)) / 2 + 24px));
+}
+
+.gallery-track::-webkit-scrollbar {
+  display: none;
+}
+
+.gallery-item {
+  flex: 0 0 auto;
+  width: min(74vw, 400px);
+  scroll-snap-align: start;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  background: var(--gray-100);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+
+.gallery-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.gallery-item img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.gallery-item figcaption {
+  padding: 14px 18px 18px;
+  font-size: 0.88rem;
+  color: var(--gray-600);
+}
+
+@media (max-width: 600px) {
+  .gallery-arrows {
+    display: none;
+  }
+}
+
 /* ————— Standort / Karte ————— */
 .map-embed {
   margin-top: 2rem;
