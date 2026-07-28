@@ -244,12 +244,13 @@ main,
 .hero::before {
   content: "";
   position: absolute;
-  top: -220px;
-  left: 50%;
-  width: 900px;
-  height: 620px;
-  background: radial-gradient(closest-side, var(--accent-soft), transparent 72%);
-  transform: translateX(-50%);
+  inset: -30px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.75) 55%, var(--white) 100%),
+    radial-gradient(closest-side, var(--accent-soft), transparent 72%),
+    url("images/einblicke/sicherung-flachdach.jpg") center 32% / cover no-repeat;
+  filter: grayscale(1) blur(8px) contrast(0.9);
+  opacity: 0.7;
   pointer-events: none;
   z-index: 0;
 }
