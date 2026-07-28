@@ -844,8 +844,9 @@ main,
   }
 
   .site-nav.nav-open {
-    max-height: 420px;
+    max-height: calc(100vh - 64px);
     opacity: 1;
+    overflow-y: auto;
   }
 
   .site-nav a {
