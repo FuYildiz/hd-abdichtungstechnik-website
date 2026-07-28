@@ -61,10 +61,19 @@
 
   <main>
 
-    <!-- Hero -->
+    <!-- Hero: erster Bildschirm zeigt nur das Logo -->
     <section id="start" class="hero">
-      <div class="container hero-stack">
+      <div class="hero-logo-wrap">
         <img class="hero-logo" src="images/logo.png" alt="HD Abdichtungstechnik – Dicht. Sicher. Langlebig.">
+      </div>
+      <a href="#hero-content" class="hero-scroll-cue" aria-label="Weiter scrollen">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+      </a>
+    </section>
+
+    <!-- Hero-Inhalt: erscheint erst beim Scrollen -->
+    <section id="hero-content" class="section hero-content">
+      <div class="container hero-stack">
         <div class="hero-copy">
           <p class="eyebrow">Abdichtungstechnik · Heidelberg &amp; Umgebung</p>
           <h1>Abdichtung für Flachdach, Balkon, Garage und Terrasse</h1>
