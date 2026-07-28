@@ -259,6 +259,15 @@ main,
   z-index: 0;
 }
 
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 42% at 50% 50%, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.55) 55%, transparent 78%);
+  pointer-events: none;
+  z-index: 0;
+}
+
 .hero-nav {
   position: absolute;
   top: 28px;
