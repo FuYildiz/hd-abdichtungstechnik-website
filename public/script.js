@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ".section:not(.hero-content) > .container > .section-intro"
   );
 
-  if (!reduceMotion && "IntersectionObserver" in window) {
+  if (!reduceMotion) {
     targets.forEach((el) => {
       el.classList.add("reveal");
       const siblings = Array.from(el.parentElement.children).filter((s) =>
@@ -43,19 +43,40 @@ document.addEventListener("DOMContentLoaded", () => {
       el.style.transitionDelay = Math.min(Math.max(index, 0) * 70, 350) + "ms";
     });
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
-    );
+    // Reveal per Position statt per IntersectionObserver: Ein schneller
+    // Flick-Scroll auf dem Handy kann kurze Intersections „verschlucken",
+    // wodurch Abschnitte dauerhaft auf opacity:0 hängen blieben. Diese
+    // Positionsprüfung läuft bei jedem Scroll-Ende zuverlässig nach und
+    // lässt garantiert nichts unsichtbar zurück.
+    let pending = Array.from(targets);
+    const revealInView = () => {
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      pending = pending.filter((el) => {
+        if (el.getBoundingClientRect().top < vh - 40) {
+          el.classList.add("visible");
+          return false;
+        }
+        return true;
+      });
+      if (pending.length === 0) {
+        removeEventListener("scroll", onScroll);
+        removeEventListener("resize", onScroll);
+      }
+    };
 
-    targets.forEach((el) => observer.observe(el));
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        revealInView();
+        ticking = false;
+      });
+    };
+
+    revealInView();
+    addEventListener("scroll", onScroll, { passive: true });
+    addEventListener("resize", onScroll);
   }
 
   // Einblicke-Galerie: läuft von selbst durch, pausiert bei Hover/Touch,
