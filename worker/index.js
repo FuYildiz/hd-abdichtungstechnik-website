@@ -41,7 +41,14 @@ async function handleContact(request, env) {
     category: normalizeCategory(body.category),
   });
 
-  await sendLeadNotification(env, lead);
+  // Benachrichtigung ist "best effort": Der Lead ist bereits gespeichert und im
+  // Admin-Dashboard sichtbar. Ein Fehler beim E-Mail-Versand (z. B. Resend nicht
+  // erreichbar) darf die Anfrage des Besuchers nicht scheitern lassen.
+  try {
+    await sendLeadNotification(env, lead);
+  } catch (err) {
+    console.error("Benachrichtigung fehlgeschlagen:", err);
+  }
 
   return json({ ok: true });
 }

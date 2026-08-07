@@ -483,6 +483,20 @@ main,
   background: linear-gradient(to bottom, var(--white), var(--black));
 }
 
+/* Inhalt über die dekorativen Verlaufskanten heben: die ::before-Gradienten
+   sind positionierte Elemente (z-index 0) und würden sonst über dem Text der
+   Sektion liegen und die Überschrift am oberen Rand verdecken. */
+.section > .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* Sprungziele der Navigation nicht unter die feste Kopfzeile schieben —
+   sonst verschwindet die Überschrift beim Anklicken eines Menüpunkts. */
+.section[id] {
+  scroll-margin-top: 80px;
+}
+
 .section-intro {
   max-width: 62ch;
   color: var(--gray-600);
