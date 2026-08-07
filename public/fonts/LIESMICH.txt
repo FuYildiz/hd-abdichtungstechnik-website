@@ -1,25 +1,24 @@
-Inter lokal einbinden — letzte manuelle Schritte
-=================================================
+Inter (lokal gehostet, kein Google-CDN)
+=======================================
 
-Die Website erwartet in diesem Ordner drei Dateien:
+Dieser Ordner enthält die Schrift Inter als lokale woff2-Dateien:
 
   inter-400.woff2   (Regular)
   inter-500.woff2   (Medium)
   inter-600.woff2   (SemiBold)
 
-So kommst du dran (5 Minuten):
+Eingebunden über @font-face in styles.css. Es besteht keine Verbindung zu
+Google Fonts o. Ä. — das ist aus Datenschutzsicht (DSGVO) gewollt.
 
-1. Öffne https://gwfh.mranftl.com/fonts/inter  (google-webfonts-helper)
-2. Charsets: "latin" reicht (enthält ä ö ü ß).
-3. Styles: 400, 500, 600 auswählen.
-4. Download ZIP, entpacken.
-5. Die drei .woff2-Dateien hierher kopieren und umbenennen:
-   inter-v…-latin-regular.woff2  → inter-400.woff2
-   inter-v…-latin-500.woff2      → inter-500.woff2
-   inter-v…-latin-600.woff2      → inter-600.woff2
+Herkunft / Lizenz
+-----------------
+Inter von Rasmus Andersson, veröffentlicht unter der SIL Open Font License 1.1
+(frei nutzbar, auch kommerziell). Die hier abgelegten Dateien sind der
+latin-Subset (enthält ä ö ü ß) aus dem npm-Paket @fontsource/inter.
 
-Alternative: https://rsms.me/inter/ (offizielle Seite, "Download family").
-
-Solange die Dateien fehlen, nutzt die Seite automatisch die System-Schrift
-(auf dem Mac: San Francisco) — sie sieht also nie kaputt aus, nur minimal anders.
-Die Google-CDN-Verbindung ist bereits entfernt, das DSGVO-Problem damit gelöst.
+Aktualisieren
+-------------
+Neue Version bei Bedarf:
+  npm install @fontsource/inter
+und die drei Dateien aus node_modules/@fontsource/inter/files/
+(inter-latin-400/500/600-normal.woff2) hierher kopieren und umbenennen.

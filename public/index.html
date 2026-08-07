@@ -12,6 +12,8 @@
   <meta property="og:url" content="https://hdabdichtungstechnik.de/">
   <link rel="canonical" href="https://hdabdichtungstechnik.de/">
   <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="favicon.png">
+  <meta name="theme-color" content="#0a0a0a">
   <link rel="stylesheet" href="styles.css">
   <script type="application/ld+json">
   {
@@ -523,12 +525,22 @@
             gesamten Rhein-Neckar-Region unterwegs — direkt vor Ort auf Ihrem
             Dach, Balkon oder in der Garage.
           </p>
+          <!-- Karte wird aus Datenschutzgründen erst nach aktivem Klick geladen
+               (Zwei-Klick-Lösung): vorher besteht keine Verbindung zu Google. -->
           <div class="map-embed">
-            <iframe
-              src="https://maps.google.com/maps?q=HD+Abdichtungstechnik,+Da-Vinci-Stra%C3%9Fe+18,+69115+Heidelberg&ftid=0x4797c1333a91c8b3:0xa912f3ee4ae6d6f1&output=embed"
-              width="100%" height="360" style="border:0;" loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              title="HD Abdichtungstechnik auf Google Maps – Da-Vinci-Straße 18, 69115 Heidelberg"></iframe>
+            <div class="map-consent" id="map-consent"
+                 data-map-src="https://maps.google.com/maps?q=HD+Abdichtungstechnik,+Da-Vinci-Stra%C3%9Fe+18,+69115+Heidelberg&ftid=0x4797c1333a91c8b3:0xa912f3ee4ae6d6f1&output=embed"
+                 data-map-title="HD Abdichtungstechnik auf Google Maps – Da-Vinci-Straße 18, 69115 Heidelberg">
+              <svg class="map-consent-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-7.8 7-12.5a7 7 0 10-14 0C5 13.2 12 21 12 21z"/><circle cx="12" cy="8.5" r="2.6"/></svg>
+              <p class="map-consent-title">Karte von Google Maps</p>
+              <p class="map-consent-note">
+                Wenn Sie die Karte laden, werden Daten an Google übertragen — Details in unserer
+                <a href="datenschutz.html">Datenschutzerklärung</a>.
+              </p>
+              <button type="button" class="btn btn-invert map-consent-btn" style="background:var(--black);color:var(--white);">
+                Karte anzeigen
+              </button>
+            </div>
           </div>
           <a class="btn btn-invert map-link" href="https://maps.app.goo.gl/88TkYufrdF6GbL336" target="_blank" rel="noopener" style="background:var(--black);color:var(--white);">
             In Google Maps öffnen

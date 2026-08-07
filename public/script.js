@@ -136,6 +136,42 @@ document.addEventListener("DOMContentLoaded", () => {
     addEventListener("resize", toggleHeader);
   }
 
+  // Karte (Google Maps): Zwei-Klick-Lösung. Das iframe wird erst geladen, wenn
+  // der Besucher aktiv zustimmt — vorher geht keine Anfrage an Google. Die
+  // Zustimmung wird für die Sitzung gemerkt, damit die Karte danach direkt lädt.
+  const mapConsent = document.querySelector("#map-consent");
+  if (mapConsent) {
+    const loadMap = () => {
+      const src = mapConsent.getAttribute("data-map-src");
+      if (!src) return;
+      const iframe = document.createElement("iframe");
+      iframe.src = src;
+      iframe.width = "100%";
+      iframe.height = "360";
+      iframe.style.border = "0";
+      iframe.loading = "lazy";
+      iframe.referrerPolicy = "no-referrer-when-downgrade";
+      iframe.title = mapConsent.getAttribute("data-map-title") || "Google Maps";
+      mapConsent.replaceWith(iframe);
+      try {
+        sessionStorage.setItem("mapConsent", "1");
+      } catch (e) {
+        /* sessionStorage kann blockiert sein — dann eben ohne Merken */
+      }
+    };
+
+    const btn = mapConsent.querySelector(".map-consent-btn");
+    if (btn) btn.addEventListener("click", loadMap);
+
+    let alreadyConsented = false;
+    try {
+      alreadyConsented = sessionStorage.getItem("mapConsent") === "1";
+    } catch (e) {
+      alreadyConsented = false;
+    }
+    if (alreadyConsented) loadMap();
+  }
+
   // Kontaktformular: sendet an /api/contact, zeigt Status ohne Seitenwechsel
   const form = document.querySelector("#contact-form");
   const status = document.querySelector("#contact-status");
