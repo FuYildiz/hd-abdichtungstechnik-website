@@ -666,6 +666,9 @@ main,
 .gallery-item img {
   display: block;
   width: 100%;
+  /* height: auto ist nötig, damit aspect-ratio greift — sonst gewinnt das
+     height-Attribut aus dem HTML und die Kacheln werden meterhoch. */
+  height: auto;
   aspect-ratio: 4 / 5;
   object-fit: cover;
 }
@@ -1311,5 +1314,23 @@ main,
   .grid,
   .steps {
     grid-template-columns: 1fr;
+  }
+}
+
+
+/* ————— Abstände auf kleinen Schirmen straffen ————— */
+@media (max-width: 600px) {
+  /* 80px oben und unten wirken auf dem Handy wie ein Loch zwischen den
+     Abschnitten. 52px halten die Trennung, ohne den Lesefluss zu reißen. */
+  .section {
+    padding: 52px 0;
+  }
+
+  #hero-content {
+    padding-top: 40px;
+  }
+
+  .section-intro {
+    margin-bottom: 2rem;
   }
 }

@@ -84,6 +84,13 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
+    // www dauerhaft auf die Hauptdomain umleiten: sonst liegt derselbe Inhalt
+    // unter zwei Adressen und Google wertet das als doppelten Inhalt.
+    if (url.hostname === "www.hdabdichtungstechnik.de") {
+      url.hostname = "hdabdichtungstechnik.de";
+      return Response.redirect(url.toString(), 301);
+    }
+
     if (url.pathname === "/api/contact" && request.method === "POST") {
       return handleContact(request, env);
     }

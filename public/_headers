@@ -1,0 +1,27 @@
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), interest-cohort=()
+  Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; font-src 'self'; connect-src 'self'; frame-src https://maps.google.com https://www.google.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self'
+
+# Schriften ändern sich nie — ein Jahr cachen.
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Bilder: 30 Tage.
+/images/*
+  Cache-Control: public, max-age=2592000
+
+# CSS/JS haben keinen Hash im Dateinamen: kurz cachen, im Hintergrund erneuern.
+/styles.css
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+
+/script.js
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+
+# Admin-Bereich nie cachen und nicht indexieren.
+/admin/*
+  Cache-Control: no-store
+  X-Robots-Tag: noindex, nofollow
